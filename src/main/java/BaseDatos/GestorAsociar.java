@@ -64,33 +64,33 @@ public class GestorAsociar {
         }
     }
 
-    public Boolean verificarPropiedadCuenta(int codigo, String cliente) {
-        Cuenta cuentas = new Cuenta();
-        try {
-            conn = ConectaBD.abrir();
-            stm = conn.createStatement();
-            usuarioResultSet = stm.executeQuery("SELECT * FROM cuenta WHERE codigo = '" + codigo + "' AND cliente = '" + cliente + "' ");
-            if (!usuarioResultSet.next()) {
-                System.out.println(" No se encontraron registros");
-                ConectaBD.cerrar();
-                return false;
-            } else {
-                do {
-                    monto = usuarioResultSet.getDouble("credito");
-                    Cuenta account = new Cuenta();
-                    account.setCredito(monto);
-                    cuentaHallada = account;
-                    cuentas = cuentaHallada;
-                } while (usuarioResultSet.next());
-                ConectaBD.cerrar();
-                return true;
+            public Boolean verificarPropiedadCuenta(int codigo, String cliente) {
+                Cuenta cuentas = new Cuenta();
+                try {
+                    conn = ConectaBD.abrir();
+                    stm = conn.createStatement();
+                    usuarioResultSet = stm.executeQuery("SELECT * FROM cuenta WHERE codigo = '" + codigo + "' AND cliente = '" + cliente + "' ");
+                    if (!usuarioResultSet.next()) {
+                        System.out.println(" No se encontraron registros");
+                        ConectaBD.cerrar();
+                        return false;
+                    } else {
+                        do {
+                            monto = usuarioResultSet.getDouble("credito");
+                            Cuenta account = new Cuenta();
+                            account.setCredito(monto);
+                            cuentaHallada = account;
+                            cuentas = cuentaHallada;
+                        } while (usuarioResultSet.next());
+                        ConectaBD.cerrar();
+                        return true;
+                    }
+                } catch (Exception e) {
+                    System.out.println("Error en la base de datos.");
+                    e.printStackTrace();
+                    return false;
+                }
             }
-        } catch (Exception e) {
-            System.out.println("Error en la base de datos.");
-            e.printStackTrace();
-            return false;
-        }
-    }
 
     /**
      * Verificar si existe cuenta
@@ -99,33 +99,33 @@ public class GestorAsociar {
      * @param cliente
      * @return
      */
-    public Boolean verificarExisteCuenta(int codigo) {
-        Cuenta cuentas = new Cuenta();
-        try {
-            conn = ConectaBD.abrir();
-            stm = conn.createStatement();
-            usuarioResultSet = stm.executeQuery("SELECT * FROM cuenta WHERE codigo = '" + codigo + "' ");
-            if (!usuarioResultSet.next()) {
-                System.out.println(" No se encontraron registros");
-                ConectaBD.cerrar();
-                return false;
-            } else {
-                do {
-                    monto = usuarioResultSet.getDouble("credito");
-                    Cuenta account = new Cuenta();
-                    account.setCredito(monto);
-                    cuentaHallada = account;
-                    cuentas = cuentaHallada;
-                } while (usuarioResultSet.next());
-                ConectaBD.cerrar();
-                return true;
+            public Boolean verificarExisteCuenta(int codigo) {
+                Cuenta cuentas = new Cuenta();
+                try {
+                    conn = ConectaBD.abrir();
+                    stm = conn.createStatement();
+                    usuarioResultSet = stm.executeQuery("SELECT * FROM cuenta WHERE codigo = '" + codigo + "' ");
+                    if (!usuarioResultSet.next()) {
+                        System.out.println(" No se encontraron registros");
+                        ConectaBD.cerrar();
+                        return false;
+                    } else {
+                        do {
+                            monto = usuarioResultSet.getDouble("credito");
+                            Cuenta account = new Cuenta();
+                            account.setCredito(monto);
+                            cuentaHallada = account;
+                            cuentas = cuentaHallada;
+                        } while (usuarioResultSet.next());
+                        ConectaBD.cerrar();
+                        return true;
+                    }
+                } catch (Exception e) {
+                    System.out.println("Error en la base de datos.");
+                    e.printStackTrace();
+                    return false;
+                }
             }
-        } catch (Exception e) {
-            System.out.println("Error en la base de datos.");
-            e.printStackTrace();
-            return false;
-        }
-    }
 
     /**
      * Enviar solicitud de Asociacion

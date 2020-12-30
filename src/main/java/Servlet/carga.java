@@ -224,8 +224,10 @@ public class carga extends HttpServlet {
             } 
             
             else if (tipo.equalsIgnoreCase("5")) {
+                
                 for (JsonElement obj : elements) {
                     // Object of array
+                    JOptionPane.showMessageDialog(null, "llega");
                     JsonObject gsonObj = obj.getAsJsonObject();
                     // Primitives elements of object
                     int codigo = Integer.parseInt(gsonObj.get("codigo").getAsString());
@@ -235,13 +237,12 @@ public class carga extends HttpServlet {
                     String tipo_transaccion = gsonObj.get("tipo").getAsString();
                     Double monto = gsonObj.get("monto").getAsDouble();
                     String cajero = gsonObj.get("cajero").getAsString();
-                    
-///////////////////////////////////////////////////                    
+                  
                     TransaccionDAO transaccion = new TransaccionDAO();
                     TransaccionDTO transac = new TransaccionDTO(codigo, cuenta, fecha, hora, tipo_transaccion.toUpperCase(),monto, cajero);
                     
                     
-///////////////////////////////////////////////////
+/////////////////////INGRESAR TRANSACCIONES SOLO COMO REGISTROS////////////////////////
 
 //                    if (transaccion.ingresarTransaccion(transac) ) {
 //                        ingresados += "Transaccion " + codigo + "\n";
@@ -249,39 +250,39 @@ public class carga extends HttpServlet {
 //                        ingresados += "Transaccion " + codigo + "No se ha guardado\n";
 //                    }
                     
-                    
-                    CuentaDAO cuentas = new CuentaDAO();
-                    
-                    
-                    
-                    
-                        if (transaccion.ingresarTransaccion(transac)) {
-                            
-                            if (tipo.equalsIgnoreCase("DEBITO")) {
-                                double tempo= (-1.00)*monto;
-                                        
-                                    if (cuentas.actualizarSaldoMenos(cuenta, tempo)) {
-                                        ingresados += "Transaccion " + codigo + "\n";
-                                    } else {
-                                        ingresados += "Transaccion " + codigo + " -No fue actualizado el saldo de la cuenta\n";
-                                    }
-                                
-                            } else {
-                                if (cuentas.actualizarSaldoMas(cuenta, monto)) {
-                                    ingresados += "Transaccion " + codigo + "\n";
-                                } else {
-                                    ingresados += "Transaccion " + codigo + " -No fue actualizado el saldo de la cuenta\n";
-                                }
-                            }
-                        } else {
-                            ingresados += "Transaccion " + codigo + " -No fue ingresada a la base de datos\n";
-                        }
+/////////////////////INGRESAR TRANSACCIONES Y ACTUALIZAR SALDO EN CUENTA////////////////////////                    
+            CuentaDAO cuentas = new CuentaDAO();
+
+            if (transac.getTipo().trim().equalsIgnoreCase("DEBITO")) {
+
+                if (cuentas.actualizarSaldoMenos(cuenta, monto)) {
+
+                    if (transaccion.ingresarTransaccion(transac)) {
+                    } else {
+                        ingresados += "Transaccion " + codigo + " NO INGRESADA\n";
+                    }
+                    ingresados += "Transaccion " + codigo + "\n";
+                } else {
+                }
+            } else {
+                if (cuentas.actualizarSaldoMas(cuenta, monto)) {
+                    if (transaccion.ingresarTransaccion(transac)) {
+
+                    } else {
+                        ingresados += "Transaccion " + codigo + "  INGRESADA\n";
+                    }
+                    ingresados += "Transaccion " + codigo + "\n";
+                } else {
+                }
+            }
+                        
                     
                 
                     
                     
 
                 }
+                
             }
             response.getWriter().write(ingresados);
         } else {

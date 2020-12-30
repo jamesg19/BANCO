@@ -11,6 +11,7 @@ import Objetos.Cliente;
 import Objetos.Cuenta;
 import Objetos.Gerente;
 import Objetos.Historial_Cambios;
+import ReporteClass.Boleta;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Date;
@@ -72,8 +73,9 @@ public class Deposit extends HttpServlet {
             
             else if(tipo.equals("DEPOSITO")){
             Double monto=null;
+            String propietario = request.getParameter("name");
             monto =Double.parseDouble(request.getParameter("monto"));
-            
+            ArrayList<Boleta> boletaArray = new ArrayList<Boleta>();
             Cuenta account = new Cuenta();
             account=dep.consultaSaldo(cuenta);
             
@@ -90,10 +92,12 @@ public class Deposit extends HttpServlet {
                 if (account != null ) {
                     dep2.actualizarSaldoCuenta(cuenta, Total);
                     dep3.registraTransaccion(cuenta, today.toString(), hora, "CREDITO", monto, USER);
-                    
+                    Boleta boleta= new Boleta(cuenta,propietario,monto+"","CREDITO");
+                    boletaArray.add(boleta);
                     
                     request.setAttribute("USER", USER);
                     request.setAttribute("ESTADO", "AGREGADO");
+                    request.setAttribute("BOLETA", boletaArray);
                     request.getRequestDispatcher("/PagesCajero/Depositar.jsp").forward(request, response);
                     
                 } else {

@@ -508,11 +508,11 @@ function verMensaje(titulo) {
                                                         success: function (data) {
                                                             if (data.length > 0)
                                                             {
-                                                                
+//                                                                muestraLogin();
                                                                 cambiandoProgreso(6 / 6, "JAMES");
                                                                 cambiando(data, "resultadosTransaccion", "Transacciones");
                                                                 muestraLogin();
-                                                                resumenCarga();
+                                                                
                                                                 
                                                                 cerrandoFrame();
                                                                 //$("#prueba1").submit();
@@ -670,6 +670,7 @@ function cambiando(datos, clase, nombreT) {
 
 
 function muestraDato() {
+    $("#iniciarSesion").show();
     $("#ingresarDatos").hide();
     $("#opciones").css("grid-template-columns","auto auto auto");
     $("#contenedorMensaje").hide();

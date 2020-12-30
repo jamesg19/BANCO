@@ -43,46 +43,6 @@ public class GestorReporteCliente {
     Cuenta cuentaHallada;
     Limite limiteHallado;
     int C = 10;
-    /**
-     * REPORTE 1 CLIENTE
-     * @param tipo
-     * @return 
-     */
-    public ArrayList<Reporte1Cliente> reporte1Cliente(String tipo) {
-        
-        ArrayList<Reporte1Cliente> cambios = new ArrayList<Reporte1Cliente>();
-        try {
-            conn = ConectaBD.abrir();
-            stm = conn.createStatement();
-            usuarioResultSet = stm.executeQuery("SELECT distinct c.codigo,c.cliente,t.fecha,t.monto,t.tipo FROM cuenta c INNER JOIN transaccion t ON c.codigo=t.cuenta AND c.cliente='"+tipo+"'  ORDER BY monto DESC LIMIT 15");
-            if (!usuarioResultSet.next()) {
-                ConectaBD.cerrar();
-                return cambios;
-            } else {
-                do {
-                    
-                    Reporte1Cliente historial=new Reporte1Cliente();
-                    
-                    historial.setCodigo(usuarioResultSet.getString("c.codigo"));
-                    historial.setCliente(usuarioResultSet.getString("c.cliente"));
-                    historial.setFecha(usuarioResultSet.getString("t.fecha"));
-                    historial.setMonto(usuarioResultSet.getString("t.monto"));
-                    historial.setTipo(usuarioResultSet.getString("t.tipo"));
-
-
-                    repor1ClienteHallado = historial;
-                    cambios.add(repor1ClienteHallado);
-                    
-                } while (usuarioResultSet.next());
-                ConectaBD.cerrar();
-                return cambios;
-            }
-        } catch (Exception e) {
-            System.out.println("Error en la base de datos.");
-            e.printStackTrace();
-            return null;
-        }
-    }
     
     public ArrayList<Reporte2Cliente> reporte2(String USER,String fecha1, String fecha2) {
         
@@ -131,6 +91,49 @@ public class GestorReporteCliente {
     }
     
     
+    
+    
+    
+    /**
+     * REPORTE 1 CLIENTE
+     * @param tipo
+     * @return 
+     */
+    public ArrayList<Reporte1Cliente> reporte1Cliente(String tipo) {
+        
+        ArrayList<Reporte1Cliente> cambios = new ArrayList<Reporte1Cliente>();
+        try {
+            conn = ConectaBD.abrir();
+            stm = conn.createStatement();
+            usuarioResultSet = stm.executeQuery("SELECT distinct c.codigo,c.cliente,t.fecha,t.monto,t.tipo FROM cuenta c INNER JOIN transaccion t ON c.codigo=t.cuenta AND c.cliente='"+tipo+"'  ORDER BY monto DESC LIMIT 15");
+            if (!usuarioResultSet.next()) {
+                ConectaBD.cerrar();
+                return cambios;
+            } else {
+                do {
+                    
+                    Reporte1Cliente historial=new Reporte1Cliente();
+                    
+                    historial.setCodigo(usuarioResultSet.getString("c.codigo"));
+                    historial.setCliente(usuarioResultSet.getString("c.cliente"));
+                    historial.setFecha(usuarioResultSet.getString("t.fecha"));
+                    historial.setMonto(usuarioResultSet.getString("t.monto"));
+                    historial.setTipo(usuarioResultSet.getString("t.tipo"));
+
+
+                    repor1ClienteHallado = historial;
+                    cambios.add(repor1ClienteHallado);
+                    
+                } while (usuarioResultSet.next());
+                ConectaBD.cerrar();
+                return cambios;
+            }
+        } catch (Exception e) {
+            System.out.println("Error en la base de datos.");
+            e.printStackTrace();
+            return null;
+        }
+    }
     
         
     /**

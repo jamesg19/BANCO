@@ -8,6 +8,8 @@ package Controlador;
 import BaseDatos.GestorTransaccion;
 import Objetos.Cliente;
 import Objetos.Cuenta;
+import ReporteClass.Boleta;
+import ReporteClass.Libreta;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.time.LocalDateTime;
@@ -38,6 +40,7 @@ public class Retiroo extends HttpServlet {
 
             String tipo = request.getParameter("tipo");
             String USER = request.getParameter("USER");
+            
             request.setAttribute("USER", USER);
             String cuenta = request.getParameter("cuenta");
 
@@ -61,9 +64,11 @@ public class Retiroo extends HttpServlet {
 
             } else if (tipo.equals("RETIRO")) {
                 Double monto = null;
+                String propietario="";
                 monto = Double.parseDouble(request.getParameter("monto"));
-
+                propietario = request.getParameter("name");
                 Cuenta account = new Cuenta();
+                ArrayList<Boleta> boletaArray = new ArrayList<Boleta>();
                 account = dep.consultaSaldo(cuenta);
 
                 Double creditoActual = account.getCredito();
@@ -79,9 +84,12 @@ public class Retiroo extends HttpServlet {
                     if (account != null) {
                         dep2.actualizarSaldoCuenta(cuenta, Total);
                         dep3.registraTransaccion(cuenta, today.toString(), hora, "DEBITO", monto, USER);
-
+                        Boleta boleta= new Boleta(cuenta,propietario,monto+"","DEBITO");
+                        boletaArray.add(boleta);
                         request.setAttribute("USER", USER);
                         request.setAttribute("ESTADO", "AGREGADO");
+                        
+                        request.setAttribute("BOLETA", boletaArray);
                         request.getRequestDispatcher("/PagesCajero/Retirar.jsp").forward(request, response);
 
                     } else {

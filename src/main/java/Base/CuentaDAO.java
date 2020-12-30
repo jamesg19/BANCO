@@ -66,12 +66,13 @@ public class CuentaDAO {
     
     public boolean actualizarSaldoMenos(int cuenta, Double monto){
        
-        String sql = "UPDATE cuenta SET credito = credito - ?  WHERE ( codigo = ? )";
+        String sql = "UPDATE cuenta SET credito = credito - ?  WHERE ( codigo = ? ) AND credito >= ? ";
         conn = ConectaBD.abrir();
         boolean ingresado = false;
         try(PreparedStatement ps = conn.prepareStatement(sql)){
             ps.setDouble(1, monto);
             ps.setInt(2, cuenta);
+            ps.setDouble(3, monto);
             ps.executeUpdate();
             ingresado = true;
         } catch (Exception e){

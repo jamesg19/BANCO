@@ -4,6 +4,7 @@
     Author     : james
 --%>
 
+<%@page import="ReporteClass.Boleta"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="Objetos.Cliente"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -60,9 +61,11 @@
             password = (String) request.getAttribute("Password");
 
             ArrayList<Cliente> cliente = null;
+            ArrayList<Boleta> boleta = null;
             cliente = (ArrayList<Cliente>) request.getAttribute("CLIENTE");
 
             try {
+            boleta=(ArrayList<Boleta>) request.getAttribute("BOLETA");
                 r = (String) request.getAttribute("ESTADO");
                 if (r.equals("AGREGADO")) {
         %>
@@ -80,7 +83,24 @@
         <%  }
             } catch (Exception e) {
             }%>
-        <div class="container profile profile-view" id="profile">
+        
+            <form action="boleta" method="GET">
+                <%                  
+                    if (boleta != null) {   %> 
+                    <%           
+                for (Boleta libretaa : boleta) {%> 
+                <input value="<%=libretaa.getCuenta()%>" class="form-control" type="hidden" name="cta">
+                <input value="<%=libretaa.getPropietario()%>" class="form-control" type="hidden" name="prop">
+                <input value="<%=libretaa.getMonto()%>" class="form-control" type="hidden" name="mont">
+                <input value="<%=libretaa.getTipo()%>" class="form-control" type="hidden" name="tip">
+                <button align="center" class="btn btn-primary form-btn" data-bs-hover-animate="jello" type="submit">IMPRIMIR BOLETA</button>
+                
+                <% }  %>
+            <% }  %>
+            </form>
+            
+            
+            <div class="container profile profile-view" id="profile">
 
             <form action="Deposit" method="GET" >
                 <br>
@@ -116,6 +136,7 @@
                                 <div class="col-md-12 content-right"><button class="btn btn-primary form-btn" data-bs-hover-animate="jello" type="submit">Validar Cuenta destino</button></div>
                                 <input value="BUSCAR" class="form-control" type="hidden" name="tipo">
                                 <input value="<%=USER%>" class="form-control" type="hidden" name="USER">
+                                <input value="<%=nombre%>" class="form-control" type="hidden" name="name">
                             </div>
                         </div>
                     </div>
@@ -152,6 +173,7 @@
                             <td><%=client.getSexo()%></td> 
                             <td><%=client.getDireccion()%></td> 
                             <td><%=client.getCumple()%></td> 
+                            <% nombre=client.getNombre();%>
                         </tr>
                     <input value="<%=client.getCodCuenta()%>" class="form-control" type="hidden" name="cuenta"> 
                     <% }%>
@@ -172,6 +194,7 @@
 
                     <input value="DEPOSITO" class="form-control" type="hidden" name="tipo">
                     <input value="<%=USER%>" class="form-control" type="hidden" name="USER">                        
+                    <input value="<%=nombre%>" class="form-control" type="hidden" name="name">
                     <% }%>
 
                     </tbody>

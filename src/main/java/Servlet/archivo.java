@@ -37,7 +37,7 @@ import org.w3c.dom.NodeList;
  *
  * @author james
  */
-@MultipartConfig(maxFileSize = 32177215)
+@MultipartConfig(maxFileSize = 641177215)
 public class archivo extends HttpServlet {
     ConectaBD cn = new ConectaBD("encender");
     /**
