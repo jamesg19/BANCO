@@ -155,12 +155,12 @@ public class archivo extends HttpServlet {
                     }
                     if (cliente.existeCliente(clienteTemporal)){
                         if (cliente.ingresarArchivo(archivo, clienteTemporal)){
-                            ingresados += "Archivo DPI de cliente "+codigo+"\n";
+                            //ingresados += "Archivo DPI de cliente "+codigo+"\n";
                         } else {
-                            ingresados += "Archivo DPI de cliente "+codigo+" -ERROR: no se ingreso a la base de datos\n";
+                            //ingresados += "Archivo DPI de cliente "+codigo+" -ERROR: no se ingreso a la base de datos\n";
                         }
                     } else {
-                       ingresados += "Archivo DPI de cliente "+codigo+" -ERROR: no existe el cliente\n";
+                       //ingresados += "Archivo DPI de cliente "+codigo+" -ERROR: no existe el cliente\n";
                     }
                 }
             }
@@ -168,6 +168,7 @@ public class archivo extends HttpServlet {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        
     }
 
     /**

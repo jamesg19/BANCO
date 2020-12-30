@@ -187,6 +187,7 @@ public class carga extends HttpServlet {
                     if (clientes.ingresarCliente(cliente)) {
                         UsuarioDTO usuario = new UsuarioDTO( codigo, password, "CLIENTE");
                         UsuarioDAO user = new UsuarioDAO();
+                        //JOptionPane.showMessageDialog(null,carga.class.getResource("Resourrcess/documento.pdf").getPath()); 
                         if (user.ingresarUsuario(usuario)) {
                             ingresados += "Cliente " + codigo + " ID: " + codigo + " \n";
                         } 

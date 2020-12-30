@@ -58,8 +58,7 @@ public class TransaccionDAO {
                 ingresado = rs.getInt("total") > 0;
             }
         } catch (SQLException sqle){
-            System.err.print("Error en método existeTransaccion() de la clase TransaccionDAO por: "+sqle);
-            System.out.print("Error en método existeTransaccion() de la clase TransaccionDAO por: "+sqle);
+            
         }
         return ingresado;
     }

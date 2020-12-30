@@ -17,8 +17,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author james
  */
-@WebServlet(name = "init", urlPatterns = {"/init"})
-public class inicio extends HttpServlet {
+@WebServlet(name = "Loginn", urlPatterns = {"/Loginn"})
+public class Loginn extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,15 +33,8 @@ public class inicio extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try ( PrintWriter out = response.getWriter()) {
-           String tipo = request.getParameter("tipo");   
-           
-           if(tipo.equalsIgnoreCase("carga")){
-           response.sendRedirect("CargaDato/carga.jsp");     
-           
-           }else if(tipo.equalsIgnoreCase("iniciar")){
-           request.getRequestDispatcher("login.jsp").forward(request, response);
-           
-           }
+            request.getRequestDispatcher("login.jsp").forward(request, response);
+               
         }
     }
 
@@ -58,6 +51,8 @@ public class inicio extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
+        request.getRequestDispatcher("login.jsp").forward(request, response);
+        //response.sendRedirect("login.jsp");
     }
 
     /**
@@ -72,6 +67,7 @@ public class inicio extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
+        //request.getRequestDispatcher("login.jsp").forward(request, response);
     }
 
     /**

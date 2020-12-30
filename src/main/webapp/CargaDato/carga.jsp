@@ -1,7 +1,7 @@
 <%-- 
     Document   : carga
     Created on : 26/10/2020, 01:40:38 AM
-    Author     : yelbetto
+    Author     : james
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -43,8 +43,18 @@
                     </button>
                     <button class="btn btn-info"
                             onclick="verMensaje('Ingresando datos a base')"
-                            style="display: none;" id="ingresarDatos">INGRESAR DATOS </button>
-                            <button class="btn btn-info" action="login.jsp" style="display: none;" id="iniciarSesion">Inicio de sesión<img  width="10%" style="display: inline-block;vertical-align: middle;"></button>
+                            style="display: none;" id="ingresarDatos">INGRESAR DATOS 
+                    </button>
+                            <form action="../Loginn" METHOD="POST" >
+                               
+                          <button class="btn btn-info" style="display: none;" id="iniciarSesion">Iniciar Sesion
+                              <img  width="10%" style="display: inline-block;vertical-align: middle;">
+                            </button>      
+                                
+                                
+                            </form>
+                            
+                            
                 </div>
             </center>
         </div>

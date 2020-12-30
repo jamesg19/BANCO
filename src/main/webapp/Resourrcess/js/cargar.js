@@ -572,6 +572,8 @@ function cambiarEstado(datos, tabla) {
     });
 }
 function cerrandoFrame() {
+    
+    $("#ingresarDatos").hide();
     $("#iniciarSesion").show();
     $("#opciones").css("grid-template-columns","auto auto auto");
     $("#contenedorMensaje").hide();
@@ -666,6 +668,7 @@ function cambiando(datos, clase, nombreT) {
 
 
 function muestraDato() {
+    $("#ingresarDatos").hide();
     $("#opciones").css("grid-template-columns","auto auto auto");
     $("#contenedorMensaje").hide();
 }

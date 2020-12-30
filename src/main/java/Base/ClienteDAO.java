@@ -60,7 +60,7 @@ public class ClienteDAO {
     }
     
     public boolean existeCliente(ClienteDTO cliente){
-        String sql = "SELECT COUNT(*) AS total FROM Cliente WHERE codigo = ?";
+        String sql = "SELECT COUNT(*) AS total FROM cliente WHERE codigo = ?";
         boolean ingresado = false;
         
         try(PreparedStatement ps = cn.prepareStatement(sql)){
@@ -70,8 +70,8 @@ public class ClienteDAO {
                 ingresado = rs.getInt("total") > 0;
             }
         } catch (SQLException sqle){
-            System.err.print("Error en método existeCliente() de la clase ClienteDAO() por: "+sqle);
-            System.out.print("Error en método existeCliente() de la clase ClienteDAO() por: "+sqle);
+            //System.err.print("Error en método existeCliente() de la clase ClienteDAO() por: "+sqle);
+            //System.out.print("Error en método existeCliente() de la clase ClienteDAO() por: "+sqle);
         }
         return ingresado;
     }

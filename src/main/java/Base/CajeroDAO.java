@@ -55,7 +55,7 @@ public class CajeroDAO {
             ps.executeUpdate();  
             ingresado = true;
         } catch (SQLException sqle){
-        JOptionPane.showMessageDialog(null, sqle);
+//        JOptionPane.showMessageDialog(null, sqle);
         }
         return ingresado;
     }
