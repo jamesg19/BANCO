@@ -239,17 +239,48 @@ public class carga extends HttpServlet {
 ///////////////////////////////////////////////////                    
                     TransaccionDAO transaccion = new TransaccionDAO();
                     TransaccionDTO transac = new TransaccionDTO(codigo, cuenta, fecha, hora, tipo_transaccion.toUpperCase(),monto, cajero);
+                    
+                    
 ///////////////////////////////////////////////////
 
-                    if (transaccion.ingresarTransaccion(transac) ) {
-                        ingresados += "Transaccion " + codigo + "\n";
-                    } else {
-                        ingresados += "Transaccion " + codigo + "No se ha guardado\n";
-                    }
+//                    if (transaccion.ingresarTransaccion(transac) ) {
+//                        ingresados += "Transaccion " + codigo + "\n";
+//                    } else {
+//                        ingresados += "Transaccion " + codigo + "No se ha guardado\n";
+//                    }
+                    
+                    
+                    CuentaDAO cuentas = new CuentaDAO();
+                    
+                    
+                    
+                    
+                        if (transaccion.ingresarTransaccion(transac)) {
+                            
+                            if (tipo.equalsIgnoreCase("DEBITO")) {
+                                double tempo= (-1.00)*monto;
+                                        
+                                    if (cuentas.actualizarSaldoMenos(cuenta, tempo)) {
+                                        ingresados += "Transaccion " + codigo + "\n";
+                                    } else {
+                                        ingresados += "Transaccion " + codigo + " -No fue actualizado el saldo de la cuenta\n";
+                                    }
+                                
+                            } else {
+                                if (cuentas.actualizarSaldoMas(cuenta, monto)) {
+                                    ingresados += "Transaccion " + codigo + "\n";
+                                } else {
+                                    ingresados += "Transaccion " + codigo + " -No fue actualizado el saldo de la cuenta\n";
+                                }
+                            }
+                        } else {
+                            ingresados += "Transaccion " + codigo + " -No fue ingresada a la base de datos\n";
+                        }
+                    
                 
-                
-                
-                
+                    
+                    
+
                 }
             }
             response.getWriter().write(ingresados);

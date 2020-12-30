@@ -48,7 +48,7 @@ public class TransaccionDAO {
     }
     
     public boolean existeTransaccion(TransaccionDTO transaccion){
-        String sql = "SELECT COUNT(*) AS total FROM Transaccion WHERE codigo = ?";
+        String sql = "SELECT COUNT(*) AS total FROM transaccion WHERE codigo = ?";
         boolean ingresado = false;
         
         try(PreparedStatement ps = cn.prepareStatement(sql)){

@@ -53,7 +53,11 @@
                                 
                                 
                             </form>
-                            
+                            <form action="../Resumen" METHOD="POST" >
+                            <button class="btn btn-info" style="display: none;" id="resumenCarga">Resumen de Carga de Archivo
+                              <img  width="10%" style="display: inline-block;vertical-align: middle;">
+                            </button> 
+                            </form>
                             
                 </div>
             </center>

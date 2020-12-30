@@ -511,6 +511,9 @@ function verMensaje(titulo) {
                                                                 
                                                                 cambiandoProgreso(6 / 6, "JAMES");
                                                                 cambiando(data, "resultadosTransaccion", "Transacciones");
+                                                                muestraLogin();
+                                                                resumenCarga();
+                                                                
                                                                 cerrandoFrame();
                                                                 //$("#prueba1").submit();
                                                             }
@@ -574,7 +577,6 @@ function cambiarEstado(datos, tabla) {
 function cerrandoFrame() {
     
     $("#ingresarDatos").hide();
-    $("#iniciarSesion").show();
     $("#opciones").css("grid-template-columns","auto auto auto");
     $("#contenedorMensaje").hide();
 }
@@ -671,4 +673,11 @@ function muestraDato() {
     $("#ingresarDatos").hide();
     $("#opciones").css("grid-template-columns","auto auto auto");
     $("#contenedorMensaje").hide();
+}
+function resumenCarga(){
+    $("#resumenCarga").show();
+    
+}
+function muestraLogin(){
+    $("#iniciarSesion").show();
 }

@@ -13,6 +13,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import javax.swing.JOptionPane;
 
 public class CuentaDAO {
     
@@ -47,18 +48,39 @@ public class CuentaDAO {
         return ingresado;
     }
     
-//    public boolean actualizarSaldo(int cuenta, Double monto){
-//        String sql = "UPDATE Cuenta SET credito = credito + ? WHERE codigo = ?";
-//        boolean ingresado = false;
-//        try(PreparedStatement ps = cn.prepareStatement(sql)){
-//            ps.setDouble(1, monto);
-//            ps.setInt(2, cuenta);
-//            ps.executeUpdate();
-//            ingresado = true;
-//        } catch (SQLException sqle){
-//            
-//        }
-//        return ingresado;
-//    }
+    public boolean actualizarSaldoMas(int cuenta, Double monto){
+        
+        String sql = "UPDATE cuenta SET credito = credito + ?  WHERE ( codigo = ? )";
+        conn = ConectaBD.abrir();
+        boolean ingresado = false;
+        try(PreparedStatement ps = conn.prepareStatement(sql)){
+            ps.setDouble(1, monto);
+            ps.setInt(2, cuenta);
+            ps.executeUpdate();
+            ingresado = true;
+        } catch (Exception e){
+            
+        }
+        return ingresado;
+    }
+    
+    public boolean actualizarSaldoMenos(int cuenta, Double monto){
+       
+        String sql = "UPDATE cuenta SET credito = credito - ?  WHERE ( codigo = ? )";
+        conn = ConectaBD.abrir();
+        boolean ingresado = false;
+        try(PreparedStatement ps = conn.prepareStatement(sql)){
+            ps.setDouble(1, monto);
+            ps.setInt(2, cuenta);
+            ps.executeUpdate();
+            ingresado = true;
+        } catch (Exception e){
+            
+        }
+        return ingresado;
+    }
+    
+    
+    
     
 }

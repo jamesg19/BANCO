@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<BANCO>
+  <GERENTE>
+    <CODIGO>500952</CODIGO>
+    <NOMBRE>Nathan sullivan</NOMBRE>
+    <TURNO>MATUTINO</TURNO>
+    <DPI>1339680935200</DPI>
+    <DIRECCION>10 calle 26-21 zona 10 Boulevard Los Proceres</DIRECCION>
+    <SEXO>MASCULINO</SEXO>
+    <PASSWORD>4Tm6Yj(Rc0]p.Eh7Sp-^b(Gq5</PASSWORD>
+  </GERENTE>
+<CAJERO>
+    <CODIGO>421296</CODIGO>
+    <NOMBRE>Owen turner</NOMBRE>
+    <TURNO>MATUTINO</TURNO>
+    <DPI>9500755291482</DPI>
+    <DIRECCION>0 avenida 0-68 Villa Hermosa 1 zona 7 </DIRECCION>
+    <SEXO>MASCULINO</SEXO>
+    <PASSWORD>)In3G{3K{,Yc/Lb5Om,Uk6Uq1</PASSWORD>
+  </CAJERO>
+<CLIENTE>
+    <CODIGO>1</CODIGO>
+    <NOMBRE>Jazlyne</NOMBRE>
+    <DPI>75744478216</DPI>
+    <BIRTH>2003-04-12</BIRTH>
+    <DIRECCION>Avenida Reforma 9-55 Zona 10   Guatemala</DIRECCION>
+    <SEXO>FEMENINO</SEXO>
+    <CUENTAS>
+        <CUENTA>
+            <CODIGO>11</CODIGO>
+            <CREADA>2010-03-24</CREADA>
+            <CREDITO>3000</CREDITO>
+        </CUENTA>
+        <CUENTA>
+            <CODIGO>111</CODIGO>
+            <CREADA>2010-09-21</CREADA>
+            <CREDITO>3001</CREDITO>
+        </CUENTA>
+    </CUENTAS>
+    <DPI-PDF>sample1.pdf</DPI-PDF>
+    <PASSWORD>-Ro1Ka4Q|6Gj1Ye4^x3\c)Wx;</PASSWORD>
+  </CLIENTE>
+<CLIENTE>
+    <CODIGO>2</CODIGO>
+    <NOMBRE>James</NOMBRE>
+    <DPI>75742478216</DPI>
+    <BIRTH>2003-04-12</BIRTH>
+    <DIRECCION>Avenida Reforma 9-55 Zona 10   Guatemala</DIRECCION>
+    <SEXO>FEMENINO</SEXO>
+    <CUENTAS>
+        <CUENTA>
+            <CODIGO>22</CODIGO>
+            <CREADA>2010-03-24</CREADA>
+            <CREDITO>2000</CREDITO>
+        </CUENTA>
+        <CUENTA>
+            <CODIGO>222</CODIGO>
+            <CREADA>2010-09-21</CREADA>
+            <CREDITO>2001</CREDITO>
+        </CUENTA>
+    </CUENTAS>
+    <DPI-PDF>sample1.pdf</DPI-PDF>
+    <PASSWORD>-Ro1Ka4Q|6Gj1Ye4^x3\c)Wx;</PASSWORD>
+  </CLIENTE>
+<TRANSACCION>
+    <CODIGO>10101010</CODIGO>
+    <CUENTA-ID>11</CUENTA-ID>
+    <FECHA>2010-12-31</FECHA>
+    <HORA>6:10:05</HORA>
+    <TIPO>CREDITO</TIPO>
+    <MONTO>100</MONTO>
+    <CAJERO-ID>421296</CAJERO-ID>
+  </TRANSACCION>
+<TRANSACCION>
+    <CODIGO>10404010</CODIGO>
+    <CUENTA-ID>22</CUENTA-ID>
+    <FECHA>2010-12-31</FECHA>
+    <HORA>6:10:05</HORA>
+    <TIPO>DEBITO</TIPO>
+    <MONTO>100</MONTO>
+    <CAJERO-ID>421296</CAJERO-ID>
+  </TRANSACCION>
+</BANCO>

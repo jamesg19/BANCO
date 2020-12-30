@@ -93,7 +93,7 @@ public class ClienteDAO {
     
     public boolean ingresarArchivo(InputStream dpi, ClienteDTO cliente){
         String query = "UPDATE cliente SET pathdpi = ? WHERE codigo = ?;";
-        JOptionPane.showMessageDialog(null, "llega dpi");
+        
         conn = ConectaBD.abrir();
         boolean ingresado = false;
         try(PreparedStatement ps = conn.prepareStatement(query)){     
