@@ -30,7 +30,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.swing.JOptionPane;
+
 
 
 
@@ -227,7 +227,7 @@ public class carga extends HttpServlet {
                 
                 for (JsonElement obj : elements) {
                     // Object of array
-                    JOptionPane.showMessageDialog(null, "llega");
+                    
                     JsonObject gsonObj = obj.getAsJsonObject();
                     // Primitives elements of object
                     int codigo = Integer.parseInt(gsonObj.get("codigo").getAsString());
